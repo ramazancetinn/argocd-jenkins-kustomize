@@ -1,5 +1,7 @@
 FROM node:lts-alpine
 
+MAINTAINER ramazancetinn@yandex.com
+
 WORKDIR /usr/app
 
 COPY src/package*.json ./

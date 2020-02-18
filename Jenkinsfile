@@ -22,7 +22,7 @@ pipeline{
                 sh "git clone https://github.com/ramazancetinn/argocd-jenkins-kustomize.git"
                 // add global config user for commit and pushing to repo
                 sh "git config --global user.email 'jenkins@ci.com'"
-                input message:'Approve deployment?'
+                // input message:'Approve deployment?'
                 dir("argocd-jenkins-kustomize") {
                     sh "cd ./deployment && kustomize edit set image ramazancetin/node-app:${env.GIT_COMMIT}"
                     withCredentials([usernamePassword(credentialsId: 'git', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {

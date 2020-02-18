@@ -2,5 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-    - ./deployment.yaml
-    - ./service.yaml
+- ./deployment.yaml
+- ./service.yaml
+images:
+- name: ramazancetin/node-app
+  newTag: a13278639856d0512a95255d3d82ef0f4103dd32

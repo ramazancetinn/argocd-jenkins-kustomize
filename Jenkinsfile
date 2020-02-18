@@ -8,9 +8,9 @@ pipeline{
             }
             steps{
                 //  build the image
-                sh "until docker ps; do sleep 3; done && docker build -t ramazancetin/argocd-node-example:${env.GIT_COMMIT} ."
+                sh "until docker ps; do sleep 3; done && docker build -t ramazancetin/node-app:${env.GIT_COMMIT} ."
                 // push to image to repo such as dockerhub
-                sh "docker login --username $DOCKERHUB_CREDS_USR --password $DOCKERHUB_CREDS_PSW && docker push ramazancetin/argocd-node-example:${env.GIT_COMMIT}"
+                sh "docker login --username $DOCKERHUB_CREDS_USR --password $DOCKERHUB_CREDS_PSW && docker push ramazancetin/node-app:${env.GIT_COMMIT}"
             }
         }
     }
@@ -26,7 +26,7 @@ pipeline{
                 sh "git config --global user.email 'jenkins@ci.com'"
                 input message:'Approve deployment?'
                 dir("argocd-jenkins-kustomize") {
-                    sh "cd ./deployment && kustomize edit set image ramazancetin/argocd-node-example:${env.GIT_COMMIT}"
+                    sh "cd ./deployment && kustomize edit set image ramazancetin/node-app:${env.GIT_COMMIT}"
                     withCredentials([usernamePassword(credentialsId: 'git', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
                         sh("git commit -am 'publish new version${env.GIT_COMMIT}' && git push https://${GIT_USER}:${GIT_PASS}@ggithub.com/ramazancetinn/argocd-jenkins-kustomize.git")
                     }

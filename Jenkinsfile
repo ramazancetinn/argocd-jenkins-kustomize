@@ -26,7 +26,7 @@ pipeline{
                 dir("argocd-jenkins-kustomize") {
                     sh "cd ./deployment && kustomize edit set image ramazancetin/node-app:${env.GIT_COMMIT}"
                     withCredentials([usernamePassword(credentialsId: 'git', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
-                        sh("git commit -am 'publish new version${env.GIT_COMMIT}' && git push https://${GIT_USER}:${GIT_PASS}@ggithub.com/ramazancetinn/argocd-jenkins-kustomize.git")
+                        sh("git commit -am 'publish new version${env.GIT_COMMIT}' && git push https://${GIT_USER}:${GIT_PASS}@github.com/ramazancetinn/argocd-jenkins-kustomize.git")
                     }
                 }
             }

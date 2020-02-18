@@ -5,8 +5,10 @@ metadata:
 spec:
   selector:
     app:  argocd-node
-  type:  NodePort
+  type:  LoadBalancer
   ports:
   - port:  8005
     targetPort:  8005
     nodePort: 30000
+  externalIPs:
+  - 51.15.137.75

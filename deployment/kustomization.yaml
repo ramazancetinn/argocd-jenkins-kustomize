@@ -6,4 +6,4 @@ resources:
 - ./service.yaml
 images:
 - name: ramazancetin/node-app
-  newTag: a13278639856d0512a95255d3d82ef0f4103dd32
+  newTag: c7bee2dc08578e791626e1d857ff378552551ab7

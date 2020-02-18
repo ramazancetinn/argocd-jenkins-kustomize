@@ -13,8 +13,6 @@ pipeline{
                 sh "docker login --username $DOCKERHUB_CREDS_USR --password $DOCKERHUB_CREDS_PSW && docker push ramazancetin/node-app:${env.GIT_COMMIT}"
             }
         }
-    }
-    stages {
         // kustomize the iamge tag and push it to repo
         stage("Deploy to Production") {
             steps{

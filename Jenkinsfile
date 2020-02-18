@@ -27,8 +27,8 @@ pipeline{
                     sh "git fetch && git checkout prod"
                     sh "cd ./deployment && kustomize edit set image ramazancetin/node-app:${env.GIT_COMMIT}"
                     withCredentials([usernamePassword(credentialsId: 'git', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
-                        sh("git commit -am 'publish new version${env.GIT_COMMIT}' && git push https://${GIT_USER}:${GIT_PASS}@github.com/ramazancetinn/argocd-jenkins-kustomize/tree/prod")
-                        // https://${GIT_USER}:${GIT_PASS}@github.com/ramazancetinn/argocd-jenkins-kustomize/tree/prod
+                        sh("git commit -am 'publish new version${env.GIT_COMMIT}' && git push origin https://${GIT_USER}:${GIT_PASS}@github.com/ramazancetinn/argocd-jenkins-kustomize.git prod")
+                        // https://${GIT_USER}:${GIT_PASS}@github.com/ramazancetinn/argocd-jenkins-kustomize.git
                     }
                 }
             }

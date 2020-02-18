@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 
-MAINTAINER ramazancetinn@yandex.com
+LABEL maintainer="ramazancetinn@yandex.com"
 
 WORKDIR /usr/app
 

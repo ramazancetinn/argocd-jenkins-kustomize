@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: argocd-node
-        image: ramazancetin/argocd-node:latest
+        image: ramazancetin/node-app:0.1
         ports:
         - containerPort: 8000

@@ -24,9 +24,11 @@ pipeline{
                 sh "git config --global user.email 'jenkins@ci.com'"
                 // input message:'Approve deployment?'
                 dir("argocd-jenkins-kustomize") {
+                    sh "git fetch && git checkout prod"
                     sh "cd ./deployment && kustomize edit set image ramazancetin/node-app:${env.GIT_COMMIT}"
                     withCredentials([usernamePassword(credentialsId: 'git', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
-                        sh("git commit -am 'publish new version${env.GIT_COMMIT}' && git push https://${GIT_USER}:${GIT_PASS}@github.com/ramazancetinn/argocd-jenkins-kustomize.git")
+                        sh("git commit -am 'publish new version${env.GIT_COMMIT}' && git push origin prod")
+                        // https://${GIT_USER}:${GIT_PASS}@github.com/ramazancetinn/argocd-jenkins-kustomize.git
                     }
                 }
             }
